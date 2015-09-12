@@ -1,0 +1,24 @@
+{
+  "name": "2015-08-chatterbox-server",
+  "version": "0.0.0",
+  "homepage": "https://github.com/stevenlundy/2015-08-chatterbox-server",
+  "authors": [
+    "Hack Reactor Students <accounts@hackreactor.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3",
+    "blueimp-md5": "~1.1.1",
+    "jquery": "~2.1.4",
+    "moment": "~2.10.6",
+    "underscore": "~1.8.3"
+  }
+}
