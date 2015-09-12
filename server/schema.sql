@@ -5,28 +5,28 @@ USE chat;
 CREATE TABLE messages (
   /* Describe your table here.*/
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  user_id int,
+  user_name varchar(140),
   message varchar(140),
-  room_id int
-);
-
-CREATE TABLE user (
-  /* Describe your table here.*/
-  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  user_name varchar(140)
-);
-
-CREATE TABLE rooms (
-  /* Describe your table here.*/
-  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   room_name varchar(140)
 );
 
-CREATE TABLE friends (
-  /* Describe your table here.*/
-  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  friend_id int
-);
+-- CREATE TABLE user (
+--   /* Describe your table here.*/
+--   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--   user_name varchar(140)
+-- );
+
+-- CREATE TABLE rooms (
+--   /* Describe your table here.*/
+--   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--   room_name varchar(140)
+-- );
+
+-- CREATE TABLE friends (
+--   /* Describe your table here.*/
+--   id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--   friend_id int
+-- );
 /* Create other tables and define schemas for them here! */
 
 
