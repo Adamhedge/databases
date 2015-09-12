@@ -1,6 +1,6 @@
 
 var app = {
-  server: window.location.origin + '/classes/chatterbox',
+  server: window.location.origin + '/classes/messages',
   messages: {},
   chatBox: document.getElementById("chats"),
   room: null,
@@ -35,9 +35,9 @@ var app = {
 
   fetch: function(cb){
     var createHTMLMessage = function(obj) {
-      var message = _.escape(obj.text);
-      var user    = _.escape(obj.username);
-      var room    = _.escape(obj.roomname);
+      var message = _.escape(obj.message);
+      var user    = _.escape(obj.user_name);
+      var room    = _.escape(obj.room_name);
       if (room === "") {
         room = "*";
       }
@@ -49,7 +49,7 @@ var app = {
                       <span class=\"timestamp\">" + moment(obj.createdAt).format("MMMM Do YYYY, h:mm:ss a") + "</span> \
                     </div>";
 
-      if(this.lastMessage && (this.lastMessage.text === obj.text && this.lastMessage.roomname === obj.roomname)){
+      if(this.lastMessage && (this.lastMessage.message === obj.message && this.lastMessage.room_name === obj.room_name)){
         this.lastMessage.count++;
         $("#chats #"+md5(user)).last().addClass("content").html(this.lastMessage.count);
       } else{
@@ -73,12 +73,13 @@ var app = {
       data: { order: '-createdAt'},
       success: function (data) {
         results = data.results;
+        console.log(results);
         for(var i = results.length - 1; i >= 0; i --) {
-          if(!(results[i].objectId in self.messages)) {
-            self.messages[results[i].objectId] = results[i];
+          if(!(results[i].id in self.messages)) {
+            self.messages[results[i].id] = results[i];
             //console.log(results[i].roomname, self.room);
             if (self.room !== null) {
-              if (results[i].roomname === self.room) {
+              if (results[i].room_name === self.room) {
                 createHTMLMessage(results[i]);
               }
             } else {
@@ -99,9 +100,9 @@ var app = {
 
   send: function(obj) {
     if (obj !== undefined) {
-      var userName = obj.username;
-      var msg = obj.text;
-      var room = obj.roomname;
+      var userName = obj.user_name;
+      var msg = obj.message;
+      var room = obj.room_name;
     } else {
       var userName = window.location.search;
       userName = _.escape(userName.substring(userName.indexOf('=')+1));
@@ -200,7 +201,7 @@ var app = {
 
     Object.keys(this.messages).forEach(function(index) {
       var message = self.messages[index];
-      var room = message.roomname;
+      var room = message.room_name;
       if (room !== undefined && room !== null && room !== "") {
         rooms.push(room)
       }

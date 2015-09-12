@@ -11,10 +11,13 @@ module.exports = {
     }, // a function which produces all the messages
     post: function (data, res) {
       var createdAt = Date.now();
-      var queryString = "insert into messages (user_name, room_name, message, createdAt) values (\'" + data.user_name + "\', \'" + data.room_name + "\', \'" + data.message + "\', " + createdAt + ");";
+      var queryString = "insert into messages (user_name, room_name, message, createdAt) values (\"" + data.user_name + "\", \"" + data.room_name + "\", \"" + data.message + "\", " + createdAt + ");";
       db.connection.query(queryString, function(err, rows){
         if(!err){
           res.sendStatus(201);
+        } else {
+          console.log(err);
+          res.sendStatus(500);
         }
       });
       //check if username and room exist
